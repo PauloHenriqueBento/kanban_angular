@@ -1,0 +1,105 @@
+<button mat-fab (click)="novo()" color="primary" class="fab">
+  <mat-icon>
+    add
+  </mat-icon>
+</button>
+
+<div *ngIf="task">
+  <mat-form-field class="form-field">
+    <mat-label>Titulo</mat-label>
+    <input matInput [(ngModel)] ="task.title">
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field class="form-field">
+    <mat-label>Descrição</mat-label>
+    <input matInput [(ngModel)] ="task.description">
+  </mat-form-field>
+
+  <br>
+
+  <mat-form-field class="form-field">
+    <mat-label>Categoria</mat-label>
+    <input matInput [(ngModel)] ="task.categorie">
+  </mat-form-field>
+
+  <br>
+  <button color="primary" mat-raised-button (click)="salvar()">Salvar</button>
+  <button href="#" class="btn btn-danger" (click)="cancelar()">cancel</button>
+
+
+</div>
+
+<div cdkDropListGroup>
+  <div class="example-container">
+    <h2>To do</h2>
+
+    <div cdkDropList
+      [cdkDropListData]="tasks"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of tasks" cdkDrag>
+        <div class="card w-100">
+          <div class="card-body">
+            <h5 class="card-header">{{item.title}}</h5>
+            <p class="card-text"><strong>Descrição:</strong> {{item.description}}.</p>
+            <p class="card-text"><strong>Categoria:</strong>{{item.categorie}}.</p>
+            <div class="d-flex justify-content-around">
+              <button href="#" class="btn btn-primary" (click)="editar(item)">Editar</button>
+              <button href="#" class="btn btn-danger" (click)="excluir(item.id)">Apagar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-container">
+    <h2>Doing</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="doing"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of doing" cdkDrag>
+        <div class="card w-100">
+          <div class="card-body">
+            <h5 class="card-header">{{item.title}}</h5>
+            <p class="card-text"><strong>Descrição:</strong>{{item.description}}.</p>
+            <p class="card-text"><strong>Categoria:</strong>{{item.categorie}}.</p>
+            <div class="d-flex justify-content-around">
+              <button href="#" class="btn btn-primary" (click)="editar(item)">Editar</button>
+              <button href="#" class="btn btn-danger" (click)="excluir(item.id)">Apagar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example-container">
+    <h2>Done</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="done"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of done" cdkDrag>
+        <div class="card w-100">
+          <div class="card-body">
+            <h5 class="card-header">{{item.title}}</h5>
+            <p class="card-text"><strong>Descrição:</strong>{{item.description}}.</p>
+            <p class="card-text"><strong>Categoria:</strong>{{item.categorie}}.</p>
+            <div class="d-flex justify-content-around">
+              <button href="#" class="btn btn-primary" (click)="editar(item)">Editar</button>
+              <button href="#" class="btn btn-danger" (click)="excluir(item.id)">Apagar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
